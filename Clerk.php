@@ -5,11 +5,23 @@ class Clerk extends Employee {
     private $userName;
     private $password;
 
-    function __construct($name, $nicNo, $gender, $username, $password) {
-        parent::__construct($name, $nicNo, $gender);
+    private static $clerk=NULL;
+    private static $transactions=array();
 
-        $this->username = $username;
-        $this->password = $password;
+    private function __construct($name, $nicNo, $gender) {
+        parent::__construct($name, $nicNo, $gender);
+        
+    }
+    
+    public static function getClerk(){
+        if(Clerk::$clerk==NULL)
+            Clerk::$clerk=new Clerk("Chaminda","654323456V","Male");
+        return Clerk::$clerk;
+    
+    }
+    
+    public function getTransactionArray(){
+        return $this->transactions;
     }
 
     public function setUserName($userName) {
