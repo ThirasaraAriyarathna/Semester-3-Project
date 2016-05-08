@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Rice Stock</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" href="HomePage.css">
+    </head>
+    <body>
+        <center><h1>Rice Stock</h1></center>
+        <center><h2 style="color:blue">Rice Stock was last updated in</h2></center>
+         <center>
+        <table bgcolor="white" border="2"  >
+            
+        <tr >
+        <th width="100px">Type</th>
+        <th width="100px">QuantityinKg</th>
+        </tr>
+       <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "irangani";
+        $dbname = "stock";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } 
+        
+        $sql = "SELECT Type,QuantityinKg FROM RiceStock";
+        $result = $conn->query($sql);
+        
+        if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {         
+        ?>            
+            <tr>
+                    <td class="cell"><?php echo $row["Type"] ?></td>
+                    <td class="cell"><?php echo $row["QuantityinKg"]?></td>
+            </tr>
+        <?php            
+            }
+        }
+        else
+            echo "No data in the database";
+        $conn->close();
+?>
+        
+    </body>
+</html>
