@@ -2,13 +2,32 @@
 
 class Administrator {
 
+   private static $admin=NULL;
     private $userName;
     private $password;
+    private static $transactions=array();
+    private $cheque;
 
-    public function _construct($userName, $password) {
-        $this->username = $userName;
-        $this->password = $password;
+
+    private function _construct() {
+        
     }
+    
+    
+    public static function getAdmin(){
+        if(Administrator::$admin==NULL){
+            Administrator::$admin=new Administrator ($un,$pw);
+            
+            
+        }
+                return Administrator::$admin;
+
+    }
+
+    public function getTransactionArray(){
+        return $this->transactions;
+    }
+
 
     public function getUserName() {
         return $this->userName;
