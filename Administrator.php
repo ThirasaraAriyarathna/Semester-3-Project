@@ -9,8 +9,9 @@ class Administrator {
     private $cheque;
 
 
-    private function _construct() {
-        
+    private function _construct($un,$pw) {
+        $userName=$un;
+        $password=$pw;
     }
     
     
@@ -114,7 +115,7 @@ class Administrator {
     }
 
     public function addPaddyToStock($amount, $type) {
-        
+        RiceMill::getStocks()[0]->addPaddy($amount, $type);
     }
 
     public function addRiceToStock($amount, $type) {
@@ -130,7 +131,7 @@ class Administrator {
     }
 
     public function getPaddyFromStock($amount, $type) {
-        
+        RiceMill::getStocks()[0]->getPaddy($amount, $type);
     }
 
     public function getFlourFromStock($amount, $type) {
